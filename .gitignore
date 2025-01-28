@@ -1,0 +1,5 @@
+# Ignoring env folder
+env/
+
+# Ignoring sqlite database
+*.sqlite3

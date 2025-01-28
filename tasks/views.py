@@ -12,7 +12,7 @@ class TaskListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = taskserializer
     filter_backends = (DjangoFilterBackend, SearchFilter)
     filterset_class = TaskFilter
-    search_fields = ['title', 'description']  # جستجو بر اساس title و description
+    search_fields = ['Title', 'Description']  # جستجو بر اساس title و description
 
 
 # View برای مشاهده، بروزرسانی و حذف Task

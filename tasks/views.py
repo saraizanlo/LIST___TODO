@@ -6,16 +6,15 @@ from .filters import TaskFilter
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 
-# View برای لیست کردن و ایجاد Task
+#task to list and create view
 class TaskListCreateAPIView(generics.ListCreateAPIView):
     queryset = task.objects.all()
     serializer_class = taskserializer
     filter_backends = (DjangoFilterBackend, SearchFilter)
     filterset_class = TaskFilter
-    search_fields = ['Title', 'Description']  # جستجو بر اساس title و description
+    search_fields = ['Title', 'Description']  #search: title and description
 
-
-# View برای مشاهده، بروزرسانی و حذف Task
+#update and delete for view
 class TaskDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = task.objects.all()
     serializer_class = taskserializer
@@ -24,11 +23,11 @@ class TaskDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
-    # بروزرسانی Task
+    # Update
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
 
-    # حذف Task
+    #Delete
     def delete(self, request, *args, **kwargs):
         instance = self.get_object()
         self.perform_destroy(instance)
